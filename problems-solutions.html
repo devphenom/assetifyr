@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Assetifyr - Problems & Solutions</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: "Inter", sans-serif;
+        background-color: #6b7ad909;
+        color: #1a1a1a;
+        line-height: 1.6;
+      }
+
+      /* Problems & Solutions Section */
+      .problems-solutions {
+        background: transparent;
+        padding: 0px 40px;
+      }
+
+      .problems-solutions-container {
+        max-width: 1200px;
+        margin: 0 auto;
+      }
+
+      .section-header {
+        text-align: center;
+        margin-bottom: 24px;
+      }
+
+      .section-header h2 {
+        font-size: 42px;
+        font-weight: 700;
+        line-height: 1.2;
+      }
+
+      .section-header h2 .cyan,
+      .solutions-header h2 .cyan {
+        color: #0066ff;
+      }
+
+      .section-header h2 .blue,
+      .solutions-header h2 .blue {
+        color: #0d0489;
+      }
+
+      .cards-row {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 16px;
+        position: relative;
+      }
+
+      .problem-card,
+      .solution-card {
+        background: #ffffff;
+        border-radius: 12px;
+        padding: 24px 20px;
+        text-align: center;
+      }
+
+      .card-icon {
+        width: 48px;
+        height: 48px;
+        margin: 0 auto 20px;
+      }
+
+      .card-icon img {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+      }
+
+      .problem-card p {
+        font-size: 16px;
+        font-weight: 500;
+        color: #1a1a1a;
+        line-height: 1.5;
+      }
+
+      .solution-card h4 {
+        font-size: 16px;
+        font-weight: 700;
+        color: #1a1a1a;
+        margin-bottom: 8px;
+        line-height: 1.4;
+      }
+
+      .solution-card p {
+        font-size: 14px;
+        font-weight: 400;
+        color: #666;
+        line-height: 1.5;
+      }
+
+      /* Connector Lines */
+      .connector {
+        position: relative;
+        height: 80px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+
+      .connector-lines {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        max-width: 1000px;
+      }
+
+      .connector-lines svg {
+        width: 100%;
+        height: 100%;
+      }
+
+      .solutions-header {
+        text-align: center;
+        padding: 8px 0;
+      }
+
+      .solutions-header h2 {
+        font-size: 42px;
+        font-weight: 700;
+        line-height: 1.2;
+      }
+
+      .tech-footer {
+        text-align: center;
+        margin-top: 24px;
+        color: #888;
+        font-size: 16px;
+        font-weight: 300;
+      }
+
+      /* Responsive - Tablet Landscape */
+      @media (max-width: 992px) {
+        .cards-row {
+          grid-template-columns: repeat(2, 1fr);
+          gap: 16px;
+        }
+
+        .section-header h2,
+        .solutions-header h2 {
+          font-size: 36px;
+        }
+
+        .connector {
+          display: none;
+        }
+      }
+
+      /* Responsive - Tablet Portrait */
+      @media (max-width: 768px) {
+        .problems-solutions {
+          padding: 60px 24px;
+        }
+
+        .section-header h2,
+        .solutions-header h2 {
+          font-size: 28px;
+        }
+
+        .cards-row {
+          grid-template-columns: repeat(2, 1fr);
+          gap: 12px;
+        }
+
+        .problem-card,
+        .solution-card {
+          padding: 20px 16px;
+        }
+
+        .card-icon {
+          width: 48px;
+          height: 48px;
+          font-size: 20px;
+          margin-bottom: 16px;
+        }
+
+        .problem-card p {
+          font-size: 14px;
+        }
+
+        .solution-card h4 {
+          font-size: 14px;
+        }
+
+        .solution-card p {
+          font-size: 12px;
+        }
+
+        .tech-footer {
+          font-size: 14px;
+        }
+      }
+
+      /* Responsive - Mobile Landscape */
+      @media (max-width: 576px) {
+        .problems-solutions {
+          padding: 48px 16px;
+        }
+
+        .section-header h2,
+        .solutions-header h2 {
+          font-size: 24px;
+        }
+
+        .cards-row {
+          grid-template-columns: 1fr;
+          gap: 12px;
+        }
+
+        .problem-card,
+        .solution-card {
+          padding: 20px;
+        }
+
+        .solutions-header {
+          padding: 32px 0;
+        }
+
+        .tech-footer {
+          font-size: 13px;
+          margin-top: 32px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Problems & Solutions Section -->
+    <section class="problems-solutions">
+      <div class="problems-solutions-container">
+        <!-- Problems Header -->
+        <div class="section-header">
+          <h2><span class="cyan">The problems</span> <span class="blue">everyone knows</span></h2>
+        </div>
+
+        <!-- Problem Cards -->
+        <div class="cards-row problems-row">
+          <div class="problem-card">
+            <div class="card-icon">
+              <img src="trust.svg" alt="Trust icon" />
+            </div>
+            <p>When buying or selling, I can't trust the condition of a product.</p>
+          </div>
+
+          <div class="problem-card">
+            <div class="card-icon">
+              <img src="contact.svg" alt="Contact icon" />
+            </div>
+            <p>When something breaks, I don't know who to contact.</p>
+          </div>
+
+          <div class="problem-card">
+            <div class="card-icon">
+              <img src="time.svg" alt="Time icon" />
+            </div>
+            <p>I don't know what happened to my device in the past.</p>
+          </div>
+
+          <div class="problem-card">
+            <div class="card-icon">
+              <img src="settings.svg" alt="Settings icon" />
+            </div>
+            <p>I forget maintenance — until it's too late.</p>
+          </div>
+        </div>
+
+        <!-- Connector Lines (Top) -->
+        <div class="connector">
+          <svg class="connector-lines" viewBox="0 0 1000 80" preserveAspectRatio="none">
+            <path d="M125 0 L125 30 L500 30 L500 80" stroke="#0066ff" stroke-width="2" fill="none" />
+            <path d="M375 0 L375 30 L500 30" stroke="#0066ff" stroke-width="2" fill="none" />
+            <path d="M625 0 L625 30 L500 30" stroke="#0066ff" stroke-width="2" fill="none" />
+            <path d="M875 0 L875 30 L500 30" stroke="#0066ff" stroke-width="2" fill="none" />
+          </svg>
+        </div>
+
+        <!-- Solutions Header -->
+        <div class="solutions-header">
+          <h2><span class="cyan">How</span> <span class="blue">Assetifyr</span> <span class="cyan">solves them</span></h2>
+        </div>
+
+        <!-- Connector Lines (Bottom) -->
+        <div class="connector">
+          <svg class="connector-lines" viewBox="0 0 1000 80" preserveAspectRatio="none">
+            <path d="M500 0 L500 50 L125 50 L125 80" stroke="#0066ff" stroke-width="2" fill="none" />
+            <path d="M500 50 L375 50 L375 80" stroke="#0066ff" stroke-width="2" fill="none" />
+            <path d="M500 50 L625 50 L625 80" stroke="#0066ff" stroke-width="2" fill="none" />
+            <path d="M500 50 L875 50 L875 80" stroke="#0066ff" stroke-width="2" fill="none" />
+          </svg>
+        </div>
+
+        <!-- Solution Cards -->
+        <div class="cards-row solutions-row">
+          <div class="solution-card">
+            <div class="card-icon">
+              <img src="trust2.svg" alt="Trust icon" />
+            </div>
+            <h4>Assetifyr gives you service providers in one click.</h4>
+            <p>The right technician, at the right time, with full device history.</p>
+          </div>
+
+          <div class="solution-card">
+            <div class="card-icon">
+              <img src="contact2.svg" alt="Contact icon" />
+            </div>
+            <h4>Assetifyr keeps everything in one place.</h4>
+            <p>All services, repairs, warranties, and documents are always accessible.</p>
+          </div>
+
+          <div class="solution-card">
+            <div class="card-icon">
+              <img src="time2.svg" alt="Time icon" />
+            </div>
+            <h4>Assetifyr shows the full, transparent product journey.</h4>
+            <p>From first use to the latest service.</p>
+          </div>
+
+          <div class="solution-card">
+            <div class="card-icon">
+              <img src="settings2.svg" alt="Settings icon" />
+            </div>
+            <h4>Assetifyr reminds you before problems happen.</h4>
+            <p>Prevent issues instead of fixing damage.</p>
+          </div>
+        </div>
+
+        <!-- Tech Footer -->
+        <p class="tech-footer">AI and blockchain power the backend — you get simple, reliable results.</p>
+      </div>
+    </section>
+  </body>
+</html>

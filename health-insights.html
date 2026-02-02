@@ -1,0 +1,694 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Pre-critical Employee Health Insights</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: "Poppins", sans-serif;
+        background-color: #ffffff;
+        color: #1a1a1a;
+        line-height: 1.4;
+        min-height: 100vh;
+        padding: 50px 30px;
+      }
+
+      .container {
+        max-width: 1200px;
+        margin: 0 auto;
+      }
+
+      /* Header */
+      .header {
+        text-align: center;
+        margin-bottom: 45px;
+      }
+
+      .header h1 {
+        font-size: 42px;
+        font-weight: 700;
+        color: #1a1a1a;
+        line-height: 1.15;
+        margin-bottom: 10px;
+      }
+
+      .header h1 .highlight {
+        color: #4caf50;
+        display: block;
+        font-style: italic;
+      }
+
+      .header .subtitle {
+        font-size: 14px;
+        font-weight: 400;
+        color: #777;
+      }
+
+      .header .subtitle strong {
+        font-weight: 600;
+        color: #1a1a1a;
+      }
+
+      /* Flow Container */
+      .flow-container {
+        display: flex;
+        align-items: stretch;
+        gap: 0;
+      }
+
+      /* Columns */
+      .column {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        padding: 20px 16px;
+        position: relative;
+      }
+
+      .column-input {
+        flex: 1;
+        /* background: linear-gradient(180deg, #f8f9fb 0%, #eef1f4 100%); */
+        border-radius: 16px 0 0 16px;
+        padding-right: 28px;
+        padding-left: 28px;
+      }
+
+      /* SVG Connector for input column */
+      .input-connector-svg {
+        position: absolute;
+        right: -25px;
+        top: 0;
+        bottom: 0;
+        width: 35px;
+        z-index: 5;
+        pointer-events: none;
+      }
+
+      .input-connector-svg svg {
+        width: 100%;
+        height: 100%;
+      }
+
+      .column-process {
+        flex: 1;
+        padding: 20px 22px;
+      }
+
+      .process-container {
+        background: rgba(255, 255, 0, 0.224);
+        border-radius: 12px;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+        padding: 14px 16px;
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+      }
+
+      .process-container .feature-card {
+        background: transparent;
+        box-shadow: none;
+        flex: 1;
+      }
+
+      .column-output {
+        flex: 1;
+        padding: 20px 22px;
+      }
+
+      .column-results {
+        flex: 1;
+        background: #ffffff;
+        border-radius: 0 16px 16px 0;
+        padding-left: 28px;
+      }
+
+      /* Arrow connectors between columns */
+      .arrow-connector {
+        position: absolute;
+        right: -12px;
+        top: 50%;
+        transform: translateY(-50%);
+        display: flex;
+        align-items: center;
+        z-index: 10;
+      }
+
+      .arrow-dots {
+        display: flex;
+        gap: 3px;
+      }
+
+      .arrow-dots span {
+        width: 3px;
+        height: 3px;
+        background: #bbb;
+        border-radius: 50%;
+      }
+
+      .arrow-head {
+        width: 0;
+        height: 0;
+        border-top: 4px solid transparent;
+        border-bottom: 4px solid transparent;
+        border-left: 6px solid #bbb;
+        margin-left: 3px;
+      }
+
+      /* Input Cards (Column 1) */
+      .input-card {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        padding: 12px 14px;
+        background: #ffffff;
+        border-radius: 10px;
+        box-shadow: 0 1px 4px rgba(0, 0, 0, 0.04);
+      }
+
+      .input-card .icon {
+        width: 30px;
+        height: 30px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+      }
+
+      .input-card .icon svg {
+        width: 22px;
+        height: 22px;
+        stroke: #333;
+        stroke-width: 1.5;
+      }
+
+      .input-card h3 {
+        font-size: 10px;
+        font-weight: 700;
+        color: #1a1a1a;
+        text-transform: uppercase;
+        letter-spacing: 0.2px;
+        line-height: 1.4;
+      }
+
+      /* Feature Cards (Columns 2 & 3) */
+      .feature-card {
+        background: #ffffff;
+        border-radius: 12px;
+        padding: 14px 16px;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+        flex: 1;
+      }
+
+      .feature-card-header {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        margin-bottom: 10px;
+      }
+
+      .feature-card-header .icon {
+        width: 26px;
+        height: 26px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .feature-card-header .icon svg {
+        width: 22px;
+        height: 22px;
+        stroke-width: 1.5;
+      }
+
+      .feature-card-header h3 {
+        font-size: 11px;
+        font-weight: 700;
+        color: #1a1a1a;
+        text-transform: uppercase;
+        letter-spacing: 0.2px;
+        line-height: 1.4;
+      }
+
+      .feature-list {
+        list-style: none;
+        padding-left: 36px;
+      }
+
+      .feature-list li {
+        font-size: 11px;
+        font-weight: 400;
+        color: #555;
+        line-height: 1.85;
+      }
+
+      .process-container.results-container {
+        background: rgba(255, 255, 0, 0.074);
+        box-shadow: none;
+        flex: 1;
+      }
+
+      /* Result Cards (Column 4) */
+      .result-card {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        padding: 14px 16px;
+        /* background: #ffffff; */
+        border-radius: 10px;
+        /* box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05); */
+      }
+
+      .result-card .icon {
+        width: 34px;
+        height: 34px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+      }
+
+      .result-card .icon svg {
+        width: 26px;
+        height: 26px;
+        stroke-width: 1.5;
+      }
+
+      .result-card h3 {
+        font-size: 10px;
+        font-weight: 700;
+        color: #1a1a1a;
+        text-transform: uppercase;
+        letter-spacing: 0.2px;
+        line-height: 1.45;
+      }
+
+      /* Icon colors */
+      .icon-green svg {
+        stroke: #4caf50;
+      }
+
+      .icon-dark svg {
+        stroke: #333;
+      }
+
+      /* Vertical connector for mobile */
+      .vertical-connector {
+        display: none;
+        width: 100%;
+        height: 50px;
+        flex-shrink: 0;
+      }
+
+      .vertical-connector svg {
+        width: 100%;
+        height: 100%;
+      }
+
+      /* Responsive */
+      @media (max-width: 950px) {
+        body {
+          padding: 35px 20px;
+        }
+
+        .header h1 {
+          font-size: 34px;
+        }
+
+        .flow-container {
+          flex-direction: column;
+          align-items: center;
+          gap: 0;
+        }
+
+        .column {
+          flex: none !important;
+          width: 100%;
+          max-width: 450px;
+          border-radius: 16px !important;
+          margin: 0;
+          padding: 20px;
+        }
+
+        .column-input {
+          padding-right: 20px;
+        }
+
+        /* Hide horizontal arrows */
+        .arrow-connector {
+          display: none;
+        }
+
+        /* Hide input connector on mobile - use vertical flow instead */
+        .input-connector-svg {
+          display: none;
+        }
+
+        /* Show vertical connectors */
+        .vertical-connector {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          max-width: 450px;
+        }
+
+        .process-container {
+          margin: 0;
+        }
+      }
+
+      @media (max-width: 560px) {
+        .header h1 {
+          font-size: 28px;
+        }
+
+        .column {
+          max-width: 100%;
+          padding: 16px;
+        }
+
+        .vertical-connector {
+          max-width: 100%;
+        }
+
+        .input-card h3,
+        .result-card h3 {
+          font-size: 9px;
+        }
+
+        .feature-card-header h3 {
+          font-size: 10px;
+        }
+
+        .feature-list li {
+          font-size: 10px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <!-- Header -->
+      <header class="header">
+        <h1>
+          Pre-critical Employee
+          <span class="highlight">Health Insights</span>
+        </h1>
+        <p class="subtitle">How <strong>Artificial Intelligence</strong> gives HR options they've never had before</p>
+      </header>
+
+      <!-- Flow Diagram -->
+      <div class="flow-container">
+        <!-- Column 1: Input -->
+        <div class="column column-input">
+          <!-- SVG Connector (dynamically populated by JavaScript) -->
+          <div class="input-connector-svg">
+            <svg viewBox="0 0 36 100" preserveAspectRatio="none" fill="none"></svg>
+          </div>
+
+          <div class="input-card">
+            <div class="icon">
+              <!-- Heartbeat/EKG icon -->
+              <svg viewBox="0 0 24 24" fill="none">
+                <path d="M22 12h-4l-3 9L9 3l-3 9H2" />
+              </svg>
+            </div>
+            <h3>Biometric<br />Screening</h3>
+          </div>
+
+          <div class="input-card">
+            <div class="icon">
+              <!-- Clipboard icon -->
+              <svg viewBox="0 0 24 24" fill="none">
+                <rect x="5" y="3" width="14" height="18" rx="2" />
+                <line x1="9" y1="8" x2="15" y2="8" />
+                <line x1="9" y1="12" x2="15" y2="12" />
+                <line x1="9" y1="16" x2="12" y2="16" />
+              </svg>
+            </div>
+            <h3>Screening<br />Report</h3>
+          </div>
+
+          <div class="input-card">
+            <div class="icon">
+              <!-- Database/Cloud icon -->
+              <svg viewBox="0 0 24 24" fill="none">
+                <path d="M12 4L4 8l8 4 8-4-8-4z" />
+                <path d="M4 12l8 4 8-4" />
+                <path d="M4 16l8 4 8-4" />
+              </svg>
+            </div>
+            <h3>Upload to<br />HIPAA-Compliant<br />Database</h3>
+          </div>
+
+          <div class="input-card">
+            <div class="icon">
+              <!-- Shield with exclamation -->
+              <svg viewBox="0 0 24 24" fill="none">
+                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+                <line x1="12" y1="9" x2="12" y2="13" />
+                <circle cx="12" cy="16" r="0.5" fill="currentColor" stroke="none" />
+              </svg>
+            </div>
+            <h3>Health<br />Risks</h3>
+          </div>
+        </div>
+
+        <!-- Vertical connector (mobile) -->
+        <div class="vertical-connector">
+          <svg viewBox="0 0 100 40" fill="none" preserveAspectRatio="xMidYMid meet">
+            <path d="M50 0 V30" stroke="#bbb" stroke-width="2" stroke-dasharray="4 3" />
+            <polygon points="46,30 54,30 50,38" fill="#bbb" />
+          </svg>
+        </div>
+
+        <!-- Column 2: Process -->
+        <div class="column column-process">
+          <div class="process-container">
+            <div class="feature-card">
+              <div class="feature-card-header">
+                <div class="icon icon-dark">
+                  <!-- Person with gear/settings -->
+                  <svg viewBox="0 0 24 24" fill="none">
+                    <circle cx="9" cy="7" r="4" />
+                    <path d="M3 21v-2a4 4 0 014-4h4" />
+                    <circle cx="17" cy="16" r="3" />
+                    <path d="M17 13v1" />
+                    <path d="M17 18v1" />
+                    <path d="M14 16h1" />
+                    <path d="M19 16h1" />
+                  </svg>
+                </div>
+                <h3>Personalized<br />Plan</h3>
+              </div>
+              <ul class="feature-list">
+                <li>Fitness</li>
+                <li>Nutrition</li>
+                <li>Mindfulness</li>
+                <li>Doctor</li>
+                <li>Communications</li>
+              </ul>
+            </div>
+
+            <div class="feature-card">
+              <div class="feature-card-header">
+                <div class="icon icon-dark">
+                  <!-- Chart/Score icon -->
+                  <svg viewBox="0 0 24 24" fill="none">
+                    <rect x="3" y="3" width="18" height="18" rx="2" />
+                    <path d="M8 12h.01" />
+                    <path d="M12 12h.01" />
+                    <path d="M16 12h.01" />
+                    <path d="M8 8h8" />
+                    <path d="M8 16h8" />
+                  </svg>
+                </div>
+                <h3>Company<br />Health Score</h3>
+              </div>
+              <ul class="feature-list">
+                <li>Population health</li>
+                <li>Communications</li>
+                <li>Materials</li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- Arrow to next column -->
+          <div class="arrow-connector">
+            <div class="arrow-dots"><span></span><span></span><span></span><span></span></div>
+            <div class="arrow-head"></div>
+          </div>
+        </div>
+
+        <!-- Vertical connector (mobile) -->
+        <div class="vertical-connector">
+          <svg viewBox="0 0 100 40" fill="none" preserveAspectRatio="xMidYMid meet">
+            <path d="M50 0 V30" stroke="#bbb" stroke-width="2" stroke-dasharray="4 3" />
+            <polygon points="46,30 54,30 50,38" fill="#bbb" />
+          </svg>
+        </div>
+
+        <!-- Column 3: Output -->
+        <div class="column column-output">
+          <div class="process-container">
+            <div class="feature-card">
+              <div class="feature-card-header">
+                <div class="icon icon-green">
+                  <!-- Mobile phone icon -->
+                  <svg viewBox="0 0 24 24" fill="none">
+                    <rect x="6" y="2" width="12" height="20" rx="2" />
+                    <line x1="12" y1="18" x2="12.01" y2="18" />
+                  </svg>
+                </div>
+                <h3>Mobile<br />App</h3>
+              </div>
+              <ul class="feature-list">
+                <li>Daily check-ins</li>
+                <li>Virtual Classes</li>
+                <li>AI Food Scanner</li>
+                <li>Selfie Scan</li>
+              </ul>
+            </div>
+
+            <div class="feature-card">
+              <div class="feature-card-header">
+                <div class="icon icon-green">
+                  <!-- Users/Admin icon -->
+                  <svg viewBox="0 0 24 24" fill="none">
+                    <path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2" />
+                    <circle cx="9" cy="7" r="4" />
+                    <path d="M23 21v-2a4 4 0 00-3-3.87" />
+                    <path d="M16 3.13a4 4 0 010 7.75" />
+                  </svg>
+                </div>
+                <h3>Admin</h3>
+              </div>
+              <ul class="feature-list">
+                <li>Manage Users</li>
+                <li>Notifications</li>
+                <li>Rewards</li>
+                <li>Report Tracking</li>
+              </ul>
+            </div>
+          </div>
+          <!-- Arrow to next column -->
+          <div class="arrow-connector">
+            <div class="arrow-dots"><span></span><span></span><span></span><span></span></div>
+            <div class="arrow-head"></div>
+          </div>
+        </div>
+
+        <!-- Vertical connector (mobile) -->
+        <div class="vertical-connector">
+          <svg viewBox="0 0 100 40" fill="none" preserveAspectRatio="xMidYMid meet">
+            <path d="M50 0 V30" stroke="#bbb" stroke-width="2" stroke-dasharray="4 3" />
+            <polygon points="46,30 54,30 50,38" fill="#bbb" />
+          </svg>
+        </div>
+
+        <!-- Column 4: Results -->
+        <div class="column column-results">
+          <div class="process-container results-container">
+            <div class="result-card">
+              <div class="icon icon-green">
+                <!-- Dollar/Cost icon -->
+                <svg viewBox="0 0 24 24" fill="none">
+                  <circle cx="12" cy="12" r="10" />
+                  <path d="M12 6v2" />
+                  <path d="M12 16v2" />
+                  <path d="M9 10c0-1 1-2 3-2s3 1 3 2-1 2-3 2-3 1-3 2 1 2 3 2 3-1 3-2" />
+                </svg>
+              </div>
+              <h3>Lower Health<br />Costs</h3>
+            </div>
+
+            <div class="result-card">
+              <div class="icon icon-green">
+                <!-- Health improvement icon -->
+                <svg viewBox="0 0 24 24" fill="none">
+                  <path d="M22 12h-4l-3 9L9 3l-3 9H2" />
+                  <path d="M18 4l2 2 4-4" stroke-linecap="round" stroke-linejoin="round" />
+                </svg>
+              </div>
+              <h3>Improved<br />Health<br />Scores</h3>
+            </div>
+
+            <div class="result-card">
+              <div class="icon icon-green">
+                <!-- Document/Report icon -->
+                <svg viewBox="0 0 24 24" fill="none">
+                  <path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z" />
+                  <polyline points="14 2 14 8 20 8" />
+                  <line x1="16" y1="13" x2="8" y2="13" />
+                  <line x1="16" y1="17" x2="8" y2="17" />
+                </svg>
+              </div>
+              <h3>Business<br />Case Report</h3>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      // Dynamically position SVG connector lines based on card positions
+      function updateConnectorSVG() {
+        const column = document.querySelector(".column-input");
+        const cards = column.querySelectorAll(".input-card");
+        const svgContainer = column.querySelector(".input-connector-svg svg");
+
+        if (!column || !cards.length || !svgContainer) return;
+
+        const columnRect = column.getBoundingClientRect();
+        const columnHeight = columnRect.height;
+
+        // Calculate center Y position for each card as percentage
+        const positions = [];
+        cards.forEach((card) => {
+          const cardRect = card.getBoundingClientRect();
+          const cardCenterY = cardRect.top + cardRect.height / 2 - columnRect.top;
+          const percentage = (cardCenterY / columnHeight) * 100;
+          positions.push(percentage);
+        });
+
+        // Build SVG paths
+        const x1 = 0;
+        const x2 = 20;
+        const xOut = 32;
+
+        let pathsHTML = "";
+
+        // Branch lines from each card
+        positions.forEach((y) => {
+          pathsHTML += `<path d="M${x1} ${y} H${x2}" stroke="#bbb" stroke-width="1.5" stroke-dasharray="3 2" vector-effect="non-scaling-stroke"/>`;
+        });
+
+        // Vertical line connecting all branches
+        const minY = Math.min(...positions);
+        const maxY = Math.max(...positions);
+        pathsHTML += `<path d="M${x2} ${minY} V${maxY}" stroke="#bbb" stroke-width="1.5" stroke-dasharray="3 2" vector-effect="non-scaling-stroke"/>`;
+
+        // Output horizontal line with arrow (at middle)
+        const midY = (minY + maxY) / 2;
+        pathsHTML += `<path d="M${x2} ${midY} H${xOut}" stroke="#bbb" stroke-width="1.5" stroke-dasharray="3 2" vector-effect="non-scaling-stroke"/>`;
+        pathsHTML += `<polygon points="${xOut},${midY - 2} ${xOut},${midY + 2} ${xOut + 4},${midY}" fill="#bbb"/>`;
+
+        svgContainer.innerHTML = pathsHTML;
+      }
+
+      // Run on load and resize
+      window.addEventListener("load", updateConnectorSVG);
+      window.addEventListener("resize", updateConnectorSVG);
+    </script>
+  </body>
+</html>

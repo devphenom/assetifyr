@@ -1,0 +1,1425 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Assetifyr - Pricing</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: "Inter", sans-serif;
+        background-color: #6b7ad909;
+        color: #1a1a1a;
+        line-height: 1.6;
+      }
+
+      /* Main Content */
+      .pricing-container {
+        max-width: 1000px;
+        margin: 0 auto;
+        padding: 40px 20px;
+      }
+
+      .pricing-header {
+        text-align: center;
+        margin-bottom: 24px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .pricing-header h1 {
+        font-size: 48px;
+        line-height: 1;
+        font-weight: 700;
+        color: #1a1a1a;
+        margin-bottom: 16px;
+      }
+
+      /* Tabs */
+      .tabs {
+        display: inline-flex;
+        align-items: center;
+        gap: 4px;
+        background: #ffffff;
+        border: 1px solid rgba(0, 0, 248, 0.07);
+        padding: 4px;
+      }
+
+      .tab {
+        background: transparent;
+        border: none;
+        padding: 10px 16px;
+        border-radius: 8px;
+        cursor: pointer;
+        font-size: 14px;
+        font-weight: 400;
+        color: #666;
+        font-family: "Inter", sans-serif;
+        transition: all 0.2s;
+        white-space: nowrap;
+      }
+
+      .tab:hover {
+        color: #333;
+      }
+
+      .tab.active {
+        background: #0066ff;
+        color: white;
+      }
+
+      .tab.add-tab {
+        font-size: 18px;
+        padding: 8px 12px;
+        color: #999;
+      }
+
+      /* Pricing Section */
+      .pricing-section {
+        margin-bottom: 40px;
+      }
+
+      .pricing-section.hidden {
+        display: none;
+      }
+
+      /* Pricing Table */
+      .pricing-table-wrapper {
+        overflow-x: auto;
+        margin-top: 24px;
+      }
+
+      .pricing-table {
+        width: 100%;
+        border-collapse: collapse;
+        background: #ffffff;
+        border: 1px solid #e8f0fe;
+        font-size: 13px;
+      }
+
+      .pricing-table th,
+      .pricing-table td {
+        padding: 12px 16px;
+        text-align: center;
+        border-bottom: 1px solid #e8f0fe;
+      }
+
+      .pricing-table th {
+        background: rgba(0, 0, 255, 0.024);
+        font-weight: 600;
+        color: #1a1a1a;
+        font-size: 14px;
+      }
+
+      .pricing-table th:first-child,
+      .pricing-table td:first-child {
+        text-align: left;
+        font-weight: 500;
+        color: #333;
+        min-width: 200px;
+      }
+
+      .pricing-table td:first-child {
+        font-weight: 400;
+      }
+
+      /* Section Dividers */
+      .pricing-table tr.section-divider td {
+        background: rgba(0, 0, 255, 0.024);
+        padding: 8px 16px;
+        font-weight: 500;
+        color: #666;
+        font-size: 11px;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+      }
+
+      /* Check and X marks */
+      .check {
+        color: #22c55e;
+        font-size: 18px;
+        font-weight: 700;
+      }
+
+      .cross {
+        color: #ef4444;
+        font-size: 18px;
+        font-weight: 700;
+      }
+
+      /* Special text styles */
+      .text-green {
+        color: #0066ff;
+        font-weight: 500;
+      }
+
+      .text-muted {
+        color: #999;
+        font-size: 12px;
+      }
+
+      .text-red {
+        color: #ef4444;
+        font-weight: 500;
+      }
+
+      /* Trial period row */
+      .trial-row td {
+        text-align: center;
+        font-size: 12px;
+        color: #666;
+        font-style: italic;
+        padding: 8px 16px;
+        background: rgba(0, 0, 255, 0.024);
+      }
+
+      /* Footer note */
+      .pricing-footer {
+        margin-top: 24px;
+        font-size: 13px;
+        color: #666;
+      }
+
+      .pricing-footer strong {
+        color: #1a1a1a;
+      }
+
+      /* Responsive */
+      @media (max-width: 992px) {
+        .pricing-container {
+          padding: 32px 16px;
+        }
+
+        .pricing-header h1 {
+          font-size: 36px;
+        }
+
+        .pricing-table {
+          font-size: 12px;
+        }
+
+        .pricing-table th,
+        .pricing-table td {
+          padding: 10px 12px;
+        }
+
+        .pricing-table th:first-child,
+        .pricing-table td:first-child {
+          min-width: 150px;
+        }
+      }
+
+      @media (max-width: 768px) {
+        .pricing-header h1 {
+          font-size: 32px;
+        }
+
+        .tabs {
+          flex-wrap: wrap;
+          justify-content: center;
+        }
+
+        .tab {
+          padding: 8px 12px;
+          font-size: 13px;
+        }
+
+        .pricing-table {
+          font-size: 11px;
+        }
+
+        .pricing-table th,
+        .pricing-table td {
+          padding: 8px 10px;
+        }
+
+        .pricing-table th:first-child,
+        .pricing-table td:first-child {
+          min-width: 120px;
+        }
+
+        .check,
+        .cross {
+          font-size: 16px;
+        }
+      }
+
+      @media (max-width: 576px) {
+        .pricing-header h1 {
+          font-size: 28px;
+        }
+
+        .tabs {
+          width: 100%;
+        }
+
+        .tab {
+          flex: 1;
+          text-align: center;
+          padding: 8px 8px;
+          font-size: 11px;
+        }
+
+        .pricing-table {
+          font-size: 10px;
+        }
+
+        .pricing-table th,
+        .pricing-table td {
+          padding: 6px 8px;
+        }
+
+        .pricing-table th:first-child,
+        .pricing-table td:first-child {
+          min-width: 100px;
+        }
+      }
+
+      /* Pricing Cards */
+      .pricing-cards {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 24px;
+        margin-bottom: 48px;
+      }
+
+      .pricing-card {
+        background: #ffffff;
+        border: 1px solid #e8f0fe;
+        border-radius: 16px;
+        padding: 32px 24px;
+        display: flex;
+        flex-direction: column;
+        position: relative;
+        transition: transform 0.2s, box-shadow 0.2s;
+      }
+
+      .pricing-card:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 12px 40px rgba(0, 102, 255, 0.1);
+      }
+
+      .pricing-card.featured {
+        border: 2px solid #0066ff;
+        box-shadow: 0 8px 32px rgba(0, 102, 255, 0.15);
+      }
+
+      .pricing-card-badge {
+        position: absolute;
+        top: -12px;
+        left: 50%;
+        transform: translateX(-50%);
+        background: linear-gradient(135deg, #0066ff, #0052cc);
+        color: white;
+        padding: 6px 16px;
+        border-radius: 20px;
+        font-size: 12px;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        white-space: nowrap;
+      }
+
+      .pricing-card-header {
+        text-align: center;
+        margin-bottom: 24px;
+        padding-bottom: 24px;
+        border-bottom: 1px solid #e8f0fe;
+      }
+
+      .pricing-card-tier {
+        font-size: 14px;
+        font-weight: 500;
+        color: #666;
+        margin-bottom: 4px;
+      }
+
+      .pricing-card-name {
+        font-size: 24px;
+        font-weight: 700;
+        color: #1a1a1a;
+        margin-bottom: 8px;
+      }
+
+      .pricing-card-price {
+        display: flex;
+        align-items: baseline;
+        justify-content: center;
+        gap: 4px;
+        margin-bottom: 8px;
+      }
+
+      .pricing-card-price .currency {
+        font-size: 20px;
+        font-weight: 600;
+        color: #1a1a1a;
+      }
+
+      .pricing-card-price .amount {
+        font-size: 48px;
+        font-weight: 700;
+        color: #1a1a1a;
+        line-height: 1;
+      }
+
+      .pricing-card-price .period {
+        font-size: 16px;
+        font-weight: 400;
+        color: #666;
+      }
+
+      .pricing-card-annual {
+        font-size: 13px;
+        color: #666;
+      }
+
+      .pricing-card-annual span {
+        color: #22c55e;
+        font-weight: 500;
+      }
+
+      .pricing-card-best-for {
+        font-size: 13px;
+        color: #0066ff;
+        font-weight: 500;
+        margin-top: 8px;
+      }
+
+      .pricing-card-features {
+        flex: 1;
+        margin-bottom: 24px;
+      }
+
+      .pricing-card-features ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+      }
+
+      .pricing-card-features li {
+        display: flex;
+        align-items: flex-start;
+        gap: 10px;
+        padding: 10px 0;
+        font-size: 14px;
+        color: #333;
+        border-bottom: 1px solid #f0f0f0;
+      }
+
+      .pricing-card-features li:last-child {
+        border-bottom: none;
+      }
+
+      .pricing-card-features li::before {
+        content: "✓";
+        color: #22c55e;
+        font-weight: 700;
+        font-size: 14px;
+        flex-shrink: 0;
+      }
+
+      .pricing-card-cta {
+        margin-top: auto;
+      }
+
+      .cta-btn {
+        display: inline-block;
+        width: 100%;
+        padding: 14px 24px;
+        background: #0066ff;
+        color: white;
+        border: none;
+        border-radius: 8px;
+        font-size: 15px;
+        font-weight: 600;
+        text-align: center;
+        text-decoration: none;
+        cursor: pointer;
+        transition: background 0.2s, transform 0.2s;
+        font-family: "Inter", sans-serif;
+      }
+
+      .cta-btn:hover {
+        transform: translateY(-1px);
+      }
+
+      .cta-btn.cta-btn-outline {
+        background: transparent;
+        border: 2px solid #0066ff;
+        color: #0066ff;
+      }
+
+      .cta-btn.cta-btn-outline:hover {
+        background: rgba(0, 102, 255, 0.05);
+      }
+
+      .pricing-cards-divider {
+        text-align: center;
+        margin: 32px 0 24px;
+        color: #666;
+        font-size: 14px;
+        font-weight: 500;
+      }
+
+      .pricing-cards-divider span {
+        background: #6b7ad909;
+        padding: 0 16px;
+        position: relative;
+      }
+
+      .pricing-cards-divider::before {
+        content: "";
+        position: absolute;
+        left: 0;
+        right: 0;
+        top: 50%;
+        height: 1px;
+        background: #e8f0fe;
+        z-index: -1;
+      }
+
+      /* Pricing Cards Responsive */
+      @media (max-width: 992px) {
+        .pricing-cards {
+          grid-template-columns: repeat(3, 1fr);
+          gap: 16px;
+        }
+
+        .pricing-card {
+          padding: 24px 16px;
+        }
+
+        .pricing-card-price .amount {
+          font-size: 36px;
+        }
+      }
+
+      @media (max-width: 768px) {
+        .pricing-cards {
+          grid-template-columns: 1fr;
+          max-width: 400px;
+          margin-left: auto;
+          margin-right: auto;
+        }
+
+        .pricing-card.featured {
+          order: -1;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="pricing-container">
+      <div class="pricing-header">
+        <h1>Pricing</h1>
+        <div class="tabs">
+          <button class="tab active" data-tab="users">Users</button>
+          <button class="tab" data-tab="service-companies">Service companies</button>
+          <button class="tab" data-tab="producers">Producers - marketing</button>
+        </div>
+      </div>
+
+      <!-- Users Pricing Section -->
+      <section class="pricing-section" data-content="users">
+        <!-- Pricing Cards -->
+        <div class="pricing-cards">
+          <!-- Free Plan -->
+          <div class="pricing-card">
+            <div class="pricing-card-header">
+              <div class="pricing-card-tier">Beta</div>
+              <div class="pricing-card-name">Free</div>
+              <div class="pricing-card-price">
+                <span class="currency">€</span>
+                <span class="amount">0</span>
+              </div>
+              <div class="pricing-card-best-for">Best for trying Assetifyr</div>
+            </div>
+            <div class="pricing-card-features">
+              <ul>
+                <li>Unlimited asset records</li>
+                <li>Store documents & warranties</li>
+                <li>Marketplace access</li>
+                <li>Basic support</li>
+              </ul>
+            </div>
+            <div class="pricing-card-cta">
+              <a href="#" class="cta-btn cta-btn-outline">Start free</a>
+            </div>
+          </div>
+
+          <!-- Essential Plan -->
+          <div class="pricing-card featured">
+            <div class="pricing-card-badge">Most Popular</div>
+            <div class="pricing-card-header">
+              <div class="pricing-card-tier">&nbsp;</div>
+              <div class="pricing-card-name">Essential</div>
+              <div class="pricing-card-price">
+                <span class="currency">€</span>
+                <span class="amount">17.99</span>
+                <span class="period">/mo</span>
+              </div>
+              <div class="pricing-card-annual">or €59.99/yr <span>(save 72%)</span></div>
+              <div class="pricing-card-best-for">Best for people who maintain devices</div>
+            </div>
+            <div class="pricing-card-features">
+              <ul>
+                <li>Maintenance reminders + warranty alerts</li>
+                <li>Recommended service providers</li>
+                <li>Family sharing (add users)</li>
+                <li>Priority support</li>
+              </ul>
+            </div>
+            <div class="pricing-card-cta">
+              <a href="#" class="cta-btn">Upgrade to Essential</a>
+            </div>
+          </div>
+
+          <!-- Pro Plan -->
+          <div class="pricing-card">
+            <div class="pricing-card-header">
+              <div class="pricing-card-tier">Verified</div>
+              <div class="pricing-card-name">Pro</div>
+              <div class="pricing-card-price">
+                <span class="currency">€</span>
+                <span class="amount">38.99</span>
+                <span class="period">/mo</span>
+              </div>
+              <div class="pricing-card-annual">or €129.99/yr <span>(save 72%)</span></div>
+              <div class="pricing-card-best-for">Best for power users & resale</div>
+            </div>
+            <div class="pricing-card-features">
+              <ul>
+                <li>Ownership + maintenance certificates included</li>
+                <li>Exports (PDF/JSON)</li>
+                <li>AI insights (when available)</li>
+                <li>Highest marketplace visibility</li>
+              </ul>
+            </div>
+            <div class="pricing-card-cta">
+              <a href="#" class="cta-btn cta-btn-outline">Go Pro</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="pricing-cards-divider" style="position: relative">
+          <span>Detailed feature comparison</span>
+        </div>
+
+        <div class="pricing-table-wrapper">
+          <table class="pricing-table">
+            <thead>
+              <tr>
+                <th>Feature</th>
+                <th>Free Access</th>
+                <th>Essential</th>
+                <th>Power</th>
+                <th>Trust Pro*</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Asset registration</td>
+                <td>Unlimited</td>
+                <td>Unlimited</td>
+                <td>Unlimited</td>
+                <td>Unlimited</td>
+              </tr>
+              <tr>
+                <td>Marketplace access</td>
+                <td><span class="check">✓</span></td>
+                <td><span class="check">✓</span></td>
+                <td><span class="check">✓</span></td>
+                <td><span class="check">✓</span></td>
+              </tr>
+              <tr>
+                <td>Service provider discovery</td>
+                <td><span class="check">✓</span></td>
+                <td><span class="check">✓</span></td>
+                <td><span class="check">✓</span></td>
+                <td><span class="check">✓</span></td>
+              </tr>
+              <tr>
+                <td>Service requests</td>
+                <td>1 year</td>
+                <td>5 year</td>
+                <td>Unlimited</td>
+                <td>Unlimited</td>
+              </tr>
+              <tr>
+                <td>Condition Taking / monthly</td>
+                <td><span class="cross">✗</span></td>
+                <td><span class="cross">✗</span></td>
+                <td>Unlimited</td>
+                <td>Unlimited</td>
+              </tr>
+              <tr>
+                <td>Ads displayed</td>
+                <td><span class="check">✓</span></td>
+                <td>Limited</td>
+                <td><span class="cross">✗</span></td>
+                <td><span class="cross">✗</span></td>
+              </tr>
+              <tr>
+                <td>Warranty expiration alerts</td>
+                <td><span class="cross">✗</span></td>
+                <td><span class="check">✓</span></td>
+                <td><span class="check">✓</span></td>
+                <td><span class="check">✓</span></td>
+              </tr>
+              <tr>
+                <td>Maintenance notifications</td>
+                <td><span class="cross">✗</span></td>
+                <td><span class="check">✓</span></td>
+                <td><span class="check">✓</span></td>
+                <td><span class="check">✓</span></td>
+              </tr>
+              <tr>
+                <td>Maintenance recommendations</td>
+                <td><span class="cross">✗</span></td>
+                <td><span class="check">✓</span></td>
+                <td><span class="check">✓</span></td>
+                <td><span class="check">✓</span></td>
+              </tr>
+              <tr>
+                <td>Recommended service providers</td>
+                <td><span class="cross">✗</span></td>
+                <td><span class="check">✓</span></td>
+                <td><span class="text-green">✓ (priority)</span></td>
+                <td><span class="text-green">✓ (priority)</span></td>
+              </tr>
+              <tr>
+                <td>Family / partner linking</td>
+                <td><span class="cross">✗</span></td>
+                <td>€ 2,99 per user</td>
+                <td>€ 2,59 per user</td>
+                <td>€ 1,99 per user</td>
+              </tr>
+              <tr>
+                <td>Ownership transfer support</td>
+                <td><span class="check">✓</span></td>
+                <td><span class="cross">✗</span></td>
+                <td><span class="check">✓</span></td>
+                <td><span class="check">✓</span></td>
+              </tr>
+              <tr>
+                <td>Ownership certificate</td>
+                <td><span class="cross">✗</span></td>
+                <td>Paid add-on</td>
+                <td class="text-green">Discounted</td>
+                <td>Included</td>
+              </tr>
+              <tr>
+                <td>Maintenance history certificate</td>
+                <td><span class="cross">✗</span></td>
+                <td>Paid add-on</td>
+                <td class="text-green">Discounted</td>
+                <td>Included</td>
+              </tr>
+              <tr>
+                <td>Export (PDF / JSON)</td>
+                <td><span class="cross">✗</span></td>
+                <td><span class="cross">✗</span></td>
+                <td>Optional</td>
+                <td><span class="check">✓</span></td>
+              </tr>
+              <tr>
+                <td>Priority marketplace visibility</td>
+                <td><span class="cross">✗</span></td>
+                <td><span class="cross">✗</span></td>
+                <td><span class="cross">✗</span></td>
+                <td><span class="check">✓</span></td>
+              </tr>
+              <tr>
+                <td>AI-powered insights</td>
+                <td><span class="cross">✗</span></td>
+                <td><span class="cross">✗</span></td>
+                <td><span class="cross">✗</span></td>
+                <td><span class="check">✓</span></td>
+              </tr>
+              <tr>
+                <td>Custom dashboard/reports</td>
+                <td><span class="cross">✗</span></td>
+                <td><span class="cross">✗</span></td>
+                <td>Optional</td>
+                <td>Optional</td>
+              </tr>
+              <tr>
+                <td>Insurance integration</td>
+                <td><span class="cross">✗</span></td>
+                <td><span class="cross">✗</span></td>
+                <td><span class="cross">✗</span></td>
+                <td><span class="check">✓</span></td>
+              </tr>
+              <!-- <tr class="section-divider">
+                <td colspan="5"></td>
+              </tr> -->
+              <tr>
+                <td>Support & SLA</td>
+                <td>E-mail 24-48h</td>
+                <td>Chat & E-mail 12h</td>
+                <td class="text-green">Priority 8h</td>
+                <td class="text-green">Priority 8h</td>
+              </tr>
+              <tr>
+                <td>Token payment discounts</td>
+                <td><span class="cross">✗</span></td>
+                <td>Planned</td>
+                <td>Planned</td>
+                <td>Planned</td>
+              </tr>
+              <tr>
+                <td>Annual billing</td>
+                <td>Free</td>
+                <td>€ 59.99</td>
+                <td>€ 99.99</td>
+                <td>€ 124.99</td>
+              </tr>
+              <tr>
+                <td>Monthly payment</td>
+                <td>Free</td>
+                <td>€ 5.99</td>
+                <td>€ 9.99</td>
+                <td>€ 12.99</td>
+              </tr>
+              <tr class="">
+                <td colspan="5" style="text-align: center">30-day trial period</td>
+              </tr>
+              <!-- <tr class="section-divider">
+                <td colspan="5"></td>
+              </tr> -->
+              <tr>
+                <td>Special offer</td>
+                <td>-</td>
+                <td>-</td>
+                <td>-</td>
+                <td>-</td>
+              </tr>
+              <tr>
+                <td>Token discount</td>
+                <td><span class="cross">✗</span></td>
+                <td>10%</td>
+                <td>15%</td>
+                <td>20%</td>
+              </tr>
+              <tr>
+                <td>Token only features</td>
+                <td><span class="cross">✗</span></td>
+                <td>1 certificate</td>
+                <td></td>
+                <td></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <p class="pricing-footer"><strong>* Enterprise option available:</strong> € 49,99 unlimited + custom support</p>
+      </section>
+
+      <!-- Service Companies Pricing Section -->
+      <section class="pricing-section hidden" data-content="service-companies">
+        <!-- Pricing Cards -->
+        <div class="pricing-cards">
+          <!-- Service Basic Plan -->
+          <div class="pricing-card">
+            <div class="pricing-card-header">
+              <div class="pricing-card-tier">&nbsp;</div>
+              <div class="pricing-card-name">Service Basic</div>
+              <div class="pricing-card-price">
+                <span class="currency">€</span>
+                <span class="amount">49.99</span>
+                <span class="period">/mo</span>
+              </div>
+              <div class="pricing-card-best-for">Best for small repair shops</div>
+            </div>
+            <div class="pricing-card-features">
+              <ul>
+                <li>Marketplace listing</li>
+                <li>50 clients / month</li>
+                <li>100 service work orders / month</li>
+                <li>Basic analytics</li>
+              </ul>
+            </div>
+            <div class="pricing-card-cta">
+              <a href="#" class="cta-btn cta-btn-outline">Get Started</a>
+            </div>
+          </div>
+
+          <!-- Service Pro Plan -->
+          <div class="pricing-card featured">
+            <div class="pricing-card-badge">Most Popular</div>
+            <div class="pricing-card-header">
+              <div class="pricing-card-tier">&nbsp;</div>
+              <div class="pricing-card-name">Service Pro</div>
+              <div class="pricing-card-price">
+                <span class="currency">€</span>
+                <span class="amount">149.99</span>
+                <span class="period">/mo</span>
+              </div>
+              <div class="pricing-card-best-for">Best for growing service businesses</div>
+            </div>
+            <div class="pricing-card-features">
+              <ul>
+                <li>200 clients / month</li>
+                <li>500 service work orders / month</li>
+                <li>In-platform billing</li>
+                <li>Advanced analytics + targeting</li>
+              </ul>
+            </div>
+            <div class="pricing-card-cta">
+              <a href="#" class="cta-btn">Upgrade to Pro</a>
+            </div>
+          </div>
+
+          <!-- Service Enterprise Plan -->
+          <div class="pricing-card">
+            <div class="pricing-card-header">
+              <div class="pricing-card-tier">&nbsp;</div>
+              <div class="pricing-card-name">Service Enterprise</div>
+              <div class="pricing-card-price">
+                <span class="currency">€</span>
+                <span class="amount">299.99</span>
+                <span class="period">/mo</span>
+              </div>
+              <div class="pricing-card-best-for">Best for large service networks</div>
+            </div>
+            <div class="pricing-card-features">
+              <ul>
+                <li>Unlimited clients & work orders</li>
+                <li>Predictive analytics + API</li>
+                <li>AI routing for requests</li>
+                <li>White-label documents</li>
+              </ul>
+            </div>
+            <div class="pricing-card-cta">
+              <a href="#" class="cta-btn cta-btn-outline">Contact Sales</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="pricing-cards-divider" style="position: relative">
+          <span>Detailed feature comparison</span>
+        </div>
+
+        <div class="pricing-table-wrapper">
+          <table class="pricing-table">
+            <thead>
+              <tr>
+                <th>Feature</th>
+                <th>Service Basic</th>
+                <th>Service Pro</th>
+                <th>Service Enterprise</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Marketplace listing</td>
+                <td><span class="check">✓</span></td>
+                <td><span class="check">✓</span></td>
+                <td><span class="check">✓</span></td>
+              </tr>
+              <tr>
+                <td>Receive service requests</td>
+                <td>Limited</td>
+                <td>Unlimited</td>
+                <td>Unlimited</td>
+              </tr>
+              <tr>
+                <td>Service requests visibility</td>
+                <td>Basic</td>
+                <td>Standard</td>
+                <td>Premium</td>
+              </tr>
+              <tr>
+                <td>Clients / month</td>
+                <td>50</td>
+                <td>200</td>
+                <td>Unlimited</td>
+              </tr>
+              <tr>
+                <td>Service work orders / month</td>
+                <td>100</td>
+                <td>500</td>
+                <td>Unlimited</td>
+              </tr>
+              <tr>
+                <td>Notifications / month</td>
+                <td>3</td>
+                <td>10</td>
+                <td>25</td>
+              </tr>
+              <tr>
+                <td>Advertising spaces</td>
+                <td>1</td>
+                <td>5</td>
+                <td>15</td>
+              </tr>
+              <tr>
+                <td>Manual invoicing</td>
+                <td><span class="check">✓</span></td>
+                <td><span class="cross">✗</span></td>
+                <td><span class="check">✓</span></td>
+              </tr>
+              <tr>
+                <td>In-platform billing</td>
+                <td><span class="cross">✗</span></td>
+                <td><span class="check">✓</span></td>
+                <td><span class="check">✓</span></td>
+              </tr>
+              <tr>
+                <td>Write maintenance history</td>
+                <td>Limited</td>
+                <td>Unlimited</td>
+                <td>Unlimited</td>
+              </tr>
+              <tr>
+                <td>Certificates generation</td>
+                <td><span class="cross">✗</span></td>
+                <td>Paid</td>
+                <td>Included</td>
+              </tr>
+              <tr>
+                <td>Notifications publishing</td>
+                <td><span class="cross">✗</span></td>
+                <td>Limited</td>
+                <td>Unlimited</td>
+              </tr>
+              <tr>
+                <td>Brand & asset targeting</td>
+                <td><span class="cross">✗</span></td>
+                <td><span class="check">✓</span></td>
+                <td><span class="check">✓</span></td>
+              </tr>
+              <tr>
+                <td>Region / country targeting</td>
+                <td><span class="cross">✗</span></td>
+                <td><span class="cross">✗</span></td>
+                <td><span class="check">✓</span></td>
+              </tr>
+              <tr>
+                <td>Basic analytics</td>
+                <td><span class="check">✓</span></td>
+                <td><span class="check">✓</span></td>
+                <td><span class="check">✓</span></td>
+              </tr>
+              <tr>
+                <td>Advanced analytics</td>
+                <td><span class="cross">✗</span></td>
+                <td><span class="check">✓</span></td>
+                <td><span class="check">✓</span></td>
+              </tr>
+              <tr>
+                <td>Predictive analytics</td>
+                <td><span class="cross">✗</span></td>
+                <td><span class="cross">✗</span></td>
+                <td><span class="check">✓</span> + API</td>
+              </tr>
+              <tr>
+                <td>ERP / accounting API</td>
+                <td><span class="cross">✗</span></td>
+                <td>Limited</td>
+                <td>Full</td>
+              </tr>
+              <tr>
+                <td>SLA / priority routing</td>
+                <td><span class="cross">✗</span></td>
+                <td><span class="check">✓</span></td>
+                <td><span class="check">✓</span></td>
+              </tr>
+              <tr>
+                <td>AI routing for requests</td>
+                <td><span class="cross">✗</span></td>
+                <td><span class="cross">✗</span></td>
+                <td><span class="check">✓</span></td>
+              </tr>
+              <tr>
+                <td>White-label documents</td>
+                <td><span class="cross">✗</span></td>
+                <td><span class="cross">✗</span></td>
+                <td><span class="check">✓</span></td>
+              </tr>
+              <tr>
+                <td>Token payments support</td>
+                <td><span class="cross">✗</span></td>
+                <td><span class="cross">✗</span></td>
+                <td><span class="check">✓</span></td>
+              </tr>
+              <tr>
+                <td>Support & SLA</td>
+                <td>E-mail 24-48h</td>
+                <td>Chat & E-mail 12h</td>
+                <td class="text-green">Priority 8h</td>
+              </tr>
+              <tr>
+                <td>Price per month</td>
+                <td>€ 49.99</td>
+                <td>€ 149.99</td>
+                <td>€ 299.99</td>
+              </tr>
+              <tr>
+                <td>Special offer</td>
+                <td>-</td>
+                <td>-</td>
+                <td>-</td>
+              </tr>
+              <tr>
+                <td>Token discount</td>
+                <td>10%</td>
+                <td>15%</td>
+                <td>20%</td>
+              </tr>
+              <tr>
+                <td>Token only features</td>
+                <td>10% more clients and service work orders</td>
+                <td>15% more clients and service work orders</td>
+                <td>20% more Notifications and Advertising</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <!-- Orders per day pricing table -->
+        <div class="pricing-table-wrapper" style="margin-top: 32px">
+          <table class="pricing-table">
+            <thead>
+              <tr>
+                <th>orders per day</th>
+                <th colspan="2">users</th>
+                <th colspan="2">users</th>
+                <th colspan="2">users</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td></td>
+                <td>1</td>
+                <td>5</td>
+                <td>25</td>
+                <td>125</td>
+                <td>2500</td>
+              </tr>
+              <tr>
+                <td class="text-red">price per user</td>
+                <td></td>
+                <td>€ 10.00</td>
+                <td>€ 6.00</td>
+                <td>€ 2.40</td>
+                <td></td>
+              </tr>
+              <tr>
+                <td></td>
+                <td>2</td>
+                <td>2.5</td>
+                <td>12.5</td>
+                <td>62.5</td>
+                <td></td>
+              </tr>
+              <tr>
+                <td class="text-red">price per user</td>
+                <td></td>
+                <td>€ 20.00</td>
+                <td>€ 12.00</td>
+                <td>€ 4.80</td>
+                <td></td>
+              </tr>
+              <tr>
+                <td></td>
+                <td>3</td>
+                <td>1.7</td>
+                <td>8.3</td>
+                <td>41.7</td>
+                <td></td>
+              </tr>
+              <tr>
+                <td class="text-red">price per user</td>
+                <td></td>
+                <td class="text-red">€ 29.99</td>
+                <td class="text-red">€ 18.00</td>
+                <td class="text-red">€ 7.20</td>
+                <td></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- Producers Pricing Section -->
+      <section class="pricing-section hidden" data-content="producers">
+        <!-- Pricing Cards -->
+        <div class="pricing-cards">
+          <!-- Ads Basic Plan -->
+          <div class="pricing-card">
+            <div class="pricing-card-header">
+              <div class="pricing-card-tier">&nbsp;</div>
+              <div class="pricing-card-name">Ads Basic</div>
+              <div class="pricing-card-price">
+                <span class="currency">€</span>
+                <span class="amount">79.99</span>
+                <span class="period">/mo</span>
+              </div>
+              <div class="pricing-card-best-for">Best for testing the waters</div>
+            </div>
+            <div class="pricing-card-features">
+              <ul>
+                <li>5 banner ads / month</li>
+                <li>10,000 views / month</li>
+                <li>500 click limit</li>
+                <li>Basic analytics (CTR)</li>
+              </ul>
+            </div>
+            <div class="pricing-card-cta">
+              <a href="#" class="cta-btn cta-btn-outline">Get Started</a>
+            </div>
+          </div>
+
+          <!-- Ads Advanced Plan -->
+          <div class="pricing-card featured">
+            <div class="pricing-card-badge">Most Popular</div>
+            <div class="pricing-card-header">
+              <div class="pricing-card-tier">&nbsp;</div>
+              <div class="pricing-card-name">Ads Advanced</div>
+              <div class="pricing-card-price">
+                <span class="currency">€</span>
+                <span class="amount">199.99</span>
+                <span class="period">/mo</span>
+              </div>
+              <div class="pricing-card-best-for">Best for active campaigns</div>
+            </div>
+            <div class="pricing-card-features">
+              <ul>
+                <li>20 ads / 50,000 views / month</li>
+                <li>Scheduled campaigns</li>
+                <li>Brand & region targeting</li>
+                <li>Conversion analytics</li>
+              </ul>
+            </div>
+            <div class="pricing-card-cta">
+              <a href="#" class="cta-btn">Upgrade to Advanced</a>
+            </div>
+          </div>
+
+          <!-- Ads Premium Plan -->
+          <div class="pricing-card">
+            <div class="pricing-card-header">
+              <div class="pricing-card-tier">&nbsp;</div>
+              <div class="pricing-card-name">Ads Premium</div>
+              <div class="pricing-card-price">
+                <span class="currency">€</span>
+                <span class="amount">499.99</span>
+                <span class="period">/mo</span>
+              </div>
+              <div class="pricing-card-best-for">Best for full-scale marketing</div>
+            </div>
+            <div class="pricing-card-features">
+              <ul>
+                <li>50 ads / 150,000 views / month</li>
+                <li>Unlimited clicks + retargeting</li>
+                <li>ROI & attribution tracking</li>
+                <li>Campaign management API</li>
+              </ul>
+            </div>
+            <div class="pricing-card-cta">
+              <a href="#" class="cta-btn cta-btn-outline">Go Premium</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="pricing-cards-divider" style="position: relative">
+          <span>Detailed feature comparison</span>
+        </div>
+
+        <div class="pricing-table-wrapper">
+          <table class="pricing-table">
+            <thead>
+              <tr>
+                <th>Feature</th>
+                <th>Ads Basic</th>
+                <th>Ads Advanced</th>
+                <th>Ads Premium</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Banner ads</td>
+                <td><span class="check">✓</span></td>
+                <td><span class="check">✓</span></td>
+                <td><span class="check">✓</span></td>
+              </tr>
+              <tr>
+                <td>Number of ads / month</td>
+                <td>5</td>
+                <td>20</td>
+                <td>50</td>
+              </tr>
+              <tr>
+                <td>Views / month</td>
+                <td>10,000</td>
+                <td>50,000</td>
+                <td>150,000</td>
+              </tr>
+              <tr>
+                <td>Click limits*</td>
+                <td>500</td>
+                <td>3,000</td>
+                <td>Unlimited</td>
+              </tr>
+              <tr>
+                <td>User notifications / month</td>
+                <td>5</td>
+                <td>15</td>
+                <td>50</td>
+              </tr>
+              <tr>
+                <td>Email notifications</td>
+                <td><span class="cross">✗</span></td>
+                <td>Limited</td>
+                <td>Unlimited</td>
+              </tr>
+              <tr>
+                <td>Scheduled campaigns</td>
+                <td><span class="cross">✗</span></td>
+                <td><span class="check">✓</span></td>
+                <td><span class="check">✓</span></td>
+              </tr>
+              <tr>
+                <td>Sponsored content</td>
+                <td><span class="cross">✗</span></td>
+                <td><span class="check">✓</span></td>
+                <td><span class="check">✓</span></td>
+              </tr>
+              <tr>
+                <td>Brand targeting</td>
+                <td><span class="cross">✗</span></td>
+                <td><span class="check">✓</span></td>
+                <td><span class="check">✓</span></td>
+              </tr>
+              <tr>
+                <td>Asset type targeting</td>
+                <td><span class="cross">✗</span></td>
+                <td><span class="check">✓</span></td>
+                <td><span class="check">✓</span></td>
+              </tr>
+              <tr>
+                <td>Region targeting</td>
+                <td><span class="cross">✗</span></td>
+                <td><span class="check">✓</span></td>
+                <td><span class="check">✓</span></td>
+              </tr>
+              <tr>
+                <td>Country targeting</td>
+                <td><span class="cross">✗</span></td>
+                <td><span class="cross">✗</span></td>
+                <td><span class="check">✓</span></td>
+              </tr>
+              <tr>
+                <td>Basic analytics (CTR)</td>
+                <td><span class="check">✓</span></td>
+                <td><span class="check">✓</span></td>
+                <td><span class="check">✓</span></td>
+              </tr>
+              <tr>
+                <td>Conversion analytics</td>
+                <td><span class="cross">✗</span></td>
+                <td><span class="check">✓</span></td>
+                <td><span class="check">✓</span></td>
+              </tr>
+              <tr>
+                <td>ROI & attribution</td>
+                <td><span class="cross">✗</span></td>
+                <td><span class="cross">✗</span></td>
+                <td><span class="check">✓</span></td>
+              </tr>
+              <tr>
+                <td>Campaign management API</td>
+                <td><span class="cross">✗</span></td>
+                <td><span class="cross">✗</span></td>
+                <td><span class="check">✓</span></td>
+              </tr>
+              <tr>
+                <td>Retargeting</td>
+                <td><span class="cross">✗</span></td>
+                <td><span class="cross">✗</span></td>
+                <td><span class="check">✓</span></td>
+              </tr>
+              <tr>
+                <td>External platform integration</td>
+                <td><span class="cross">✗</span></td>
+                <td><span class="cross">✗</span></td>
+                <td><span class="check">✓</span> API</td>
+              </tr>
+              <tr>
+                <td>AI chat-bot integration</td>
+                <td><span class="cross">✗</span></td>
+                <td>Standard</td>
+                <td>Priority</td>
+              </tr>
+              <tr>
+                <td>Support & SLA</td>
+                <td>E-mail 24-48h</td>
+                <td>Chat & E-mail 12h</td>
+                <td class="text-green">Priority 8h</td>
+              </tr>
+              <tr>
+                <td>Price per month</td>
+                <td>€ 79.99</td>
+                <td>€ 199.99</td>
+                <td>€ 499.99</td>
+              </tr>
+              <tr>
+                <td>Special offer</td>
+                <td>-</td>
+                <td>-</td>
+                <td>-</td>
+              </tr>
+              <tr>
+                <td>Token discount</td>
+                <td>10%</td>
+                <td>15%</td>
+                <td>20%</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <p class="pricing-footer"><strong>* Additional Pay-Per Click option:</strong> €0,05 per click</p>
+      </section>
+    </div>
+
+    <script>
+      // Tab switching functionality
+      const tabs = document.querySelectorAll(".tab:not(.add-tab)");
+      const sections = document.querySelectorAll(".pricing-section");
+
+      tabs.forEach((tab) => {
+        tab.addEventListener("click", () => {
+          const targetTab = tab.getAttribute("data-tab");
+
+          // Remove active class from all tabs
+          tabs.forEach((t) => t.classList.remove("active"));
+
+          // Add active class to clicked tab
+          tab.classList.add("active");
+
+          // Hide all sections
+          sections.forEach((section) => {
+            section.classList.add("hidden");
+          });
+
+          // Show the target section
+          const targetSection = document.querySelector(`[data-content="${targetTab}"]`);
+          if (targetSection) {
+            targetSection.classList.remove("hidden");
+          }
+        });
+      });
+    </script>
+  </body>
+</html>

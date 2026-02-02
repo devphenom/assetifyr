@@ -1,0 +1,722 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Assetifyr - Features</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: "Inter", sans-serif;
+        background-color: #6b7ad909;
+        color: #1a1a1a;
+        line-height: 1.6;
+      }
+
+      /* Main Content */
+      .features-container {
+        max-width: 800px; /*1200px;*/
+        margin: 0 auto;
+      }
+
+      .features-header {
+        text-align: center;
+        margin-bottom: 24px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .features-header h1 {
+        font-size: 48px;
+        line-height: 1;
+        font-weight: 700;
+        color: #1a1a1a;
+        margin-bottom: 16px;
+      }
+
+      /* Tabs */
+      .tabs {
+        display: inline-flex;
+        align-items: center;
+        gap: 4px;
+        background: #ffffff;
+        border: 1px solid rgba(0, 0, 248, 0.07);
+        padding: 4px;
+      }
+
+      .tab {
+        background: transparent;
+        border: none;
+        padding: 10px;
+        border-radius: 8px;
+        cursor: pointer;
+        font-size: 16px;
+        font-weight: 300;
+        color: #666;
+        font-family: "Inter", sans-serif;
+        transition: all 0.2s;
+        white-space: nowrap;
+      }
+
+      .tab:hover {
+        color: #333;
+      }
+
+      .tab.active {
+        background: #0066ff;
+        color: white;
+      }
+
+      .tab.active:hover {
+        background: #0052cc;
+      }
+
+      /* Feature Section */
+      .feature-section {
+        margin-bottom: 80px;
+      }
+
+      .feature-section.hidden {
+        display: none;
+      }
+
+      .section-title {
+        text-align: center;
+        font-size: 36px;
+        font-weight: 700;
+        color: #1a1a1a;
+        margin-bottom: 16px;
+        line-height: 1.4;
+        max-width: 600px;
+        margin-inline: auto;
+      }
+
+      .section-title .highlight {
+        color: #0066ff;
+      }
+
+      .section-description {
+        text-align: center;
+        font-size: 18px;
+        font-weight: 300;
+        color: #666;
+        margin-bottom: 24px;
+        line-height: 1.6;
+        max-width: 600px;
+        margin-inline: auto;
+      }
+
+      .features-grid {
+        display: grid;
+        grid-template-columns: 1.5fr 1fr;
+        gap: 0;
+        margin-bottom: 20px;
+        background: #ffffff;
+        padding: 12px;
+        border: 1px solid #e8f0fe;
+        max-width: 700px;
+        margin-inline: auto;
+      }
+
+      .feature-card {
+        padding: 12px 16px;
+      }
+
+      .feature-card.bordered {
+        border: 1px solid #d0e3ff;
+        background-color: rgba(0, 0, 255, 0.024);
+      }
+
+      .feature-card h3 {
+        font-size: 24px;
+        font-weight: 700;
+        color: #1a1a1a;
+        margin-bottom: 16px;
+      }
+
+      .feature-list {
+        list-style: none;
+      }
+
+      .feature-list li {
+        display: flex;
+        align-items: flex-start;
+        gap: 16px;
+        margin-bottom: 16px;
+        font-size: 16px;
+        font-weight: 300;
+        color: #333;
+        line-height: 1.5;
+      }
+
+      .feature-list li:last-child {
+        margin-bottom: 0;
+      }
+
+      .checkmark {
+        width: 24px;
+        height: 24px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+        margin-top: 0;
+      }
+
+      .checkmark::after {
+        content: "✓";
+        color: #0066ff;
+        font-size: 20px;
+        font-weight: 500;
+      }
+
+      .cta-section {
+        text-align: center;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 16px;
+      }
+
+      .cta-text {
+        font-size: 16px;
+        color: #1a1a1a;
+      }
+
+      .cta-btn {
+        background: #0066ff;
+        color: white;
+        border: none;
+        padding: 12px;
+        border-radius: 8px;
+        cursor: pointer;
+        font-size: 14px;
+        font-weight: 600;
+        font-family: "Inter", sans-serif;
+        transition: background 0.3s;
+      }
+
+      .cta-btn:hover {
+        background: #0052cc;
+      }
+
+      /* Responsive - Tablet Landscape */
+      @media (max-width: 992px) {
+        .features-container {
+          max-width: 100%;
+          padding: 48px 40px;
+        }
+
+        .features-grid {
+          max-width: 100%;
+        }
+      }
+
+      /* Responsive - Tablet Portrait */
+      @media (max-width: 768px) {
+        .features-container {
+          padding: 40px 24px;
+        }
+
+        .features-header {
+          margin-bottom: 20px;
+        }
+
+        .features-header h1 {
+          font-size: 36px;
+          margin-bottom: 16px;
+        }
+
+        .tabs {
+          flex-wrap: wrap;
+          justify-content: center;
+          gap: 6px;
+          padding: 6px;
+        }
+
+        .tab {
+          padding: 8px 12px;
+          font-size: 14px;
+        }
+
+        .section-title {
+          font-size: 28px;
+          max-width: 100%;
+        }
+
+        .section-description {
+          font-size: 16px;
+          max-width: 100%;
+        }
+
+        .features-grid {
+          grid-template-columns: 1fr;
+          gap: 0;
+          padding: 20px;
+        }
+
+        .feature-card {
+          padding: 16px 8px;
+        }
+
+        .feature-card.bordered {
+          border: none;
+          border-top: 1px solid #d0e3ff;
+          padding-top: 24px;
+          margin-top: 16px;
+          background-color: transparent;
+        }
+
+        .feature-card h3 {
+          font-size: 20px;
+          margin-bottom: 12px;
+        }
+
+        .feature-list li {
+          font-size: 15px;
+          gap: 12px;
+          margin-bottom: 12px;
+        }
+
+        .checkmark {
+          width: 20px;
+          height: 20px;
+        }
+
+        .checkmark::after {
+          font-size: 16px;
+        }
+
+        .cta-section {
+          flex-direction: column;
+          gap: 12px;
+        }
+
+        .cta-text {
+          font-size: 15px;
+        }
+
+        .cta-btn {
+          width: 100%;
+          max-width: 280px;
+          padding: 14px 24px;
+        }
+
+        .feature-section {
+          margin-bottom: 60px;
+        }
+      }
+
+      /* Responsive - Mobile Landscape */
+      @media (max-width: 576px) {
+        .features-container {
+          padding: 32px 16px;
+        }
+
+        .features-header h1 {
+          font-size: 32px;
+        }
+
+        .tabs {
+          width: 100%;
+          padding: 4px;
+          gap: 4px;
+        }
+
+        .tab {
+          padding: 8px 10px;
+          font-size: 12px;
+          flex: 1 1 auto;
+          text-align: center;
+        }
+
+        .section-title {
+          font-size: 24px;
+          line-height: 1.3;
+        }
+
+        .section-description {
+          font-size: 15px;
+          line-height: 1.5;
+        }
+
+        .features-grid {
+          padding: 16px;
+        }
+
+        .feature-card h3 {
+          font-size: 18px;
+        }
+
+        .feature-list li {
+          font-size: 14px;
+          gap: 10px;
+          margin-bottom: 10px;
+        }
+
+        .checkmark {
+          width: 18px;
+          height: 18px;
+        }
+
+        .checkmark::after {
+          font-size: 14px;
+        }
+
+        .cta-text {
+          font-size: 14px;
+        }
+
+        .cta-btn {
+          font-size: 13px;
+          padding: 12px 20px;
+        }
+
+        .feature-section {
+          margin-bottom: 48px;
+        }
+      }
+
+      /* Responsive - Small Mobile */
+      @media (max-width: 400px) {
+        .features-container {
+          padding: 24px 12px;
+        }
+
+        .features-header h1 {
+          font-size: 28px;
+        }
+
+        .tabs {
+          flex-direction: column;
+          width: 100%;
+        }
+
+        .tab {
+          width: 100%;
+          padding: 10px 16px;
+          font-size: 13px;
+        }
+
+        .section-title {
+          font-size: 22px;
+        }
+
+        .section-description {
+          font-size: 14px;
+        }
+
+        .features-grid {
+          padding: 12px;
+        }
+
+        .feature-card {
+          padding: 12px 4px;
+        }
+
+        .feature-card h3 {
+          font-size: 16px;
+        }
+
+        .feature-list li {
+          font-size: 13px;
+          gap: 8px;
+        }
+
+        .checkmark {
+          width: 16px;
+          height: 16px;
+        }
+
+        .checkmark::after {
+          font-size: 12px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Features Section -->
+    <div class="features-container">
+      <div class="features-header">
+        <h1>Features</h1>
+        <div class="tabs">
+          <button class="tab active" data-tab="users">For Users</button>
+          <button class="tab" data-tab="service-providers">For Service Providers</button>
+          <button class="tab" data-tab="manufacturers">For Manufacturers</button>
+          <button class="tab" data-tab="retailers">For Retailers & Sellers</button>
+        </div>
+      </div>
+
+      <!-- For Users Section -->
+      <section class="feature-section" data-content="users">
+        <h2 class="section-title"><span class="highlight">For Users</span> – Everything You Own, Finally Organized</h2>
+        <p class="section-description">Assetifyr helps you manage all your devices in one simple place. No more lost receipts, forgotten services, or guessing who to call.</p>
+
+        <div class="features-grid">
+          <div class="feature-card">
+            <h3>What You Get</h3>
+            <ul class="feature-list">
+              <li>
+                <span class="checkmark"></span>
+                <span>A digital passport for every device</span>
+              </li>
+              <li>
+                <span class="checkmark"></span>
+                <span>All documents, services, and warranties stored safely</span>
+              </li>
+              <li>
+                <span class="checkmark"></span>
+                <span>One-click access to service providers</span>
+              </li>
+              <li>
+                <span class="checkmark"></span>
+                <span>Maintenance reminders before problems happen</span>
+              </li>
+              <li>
+                <span class="checkmark"></span>
+                <span>Higher resale value with verified history</span>
+              </li>
+              <li>
+                <span class="checkmark"></span>
+                <span>One-click ownership transfer</span>
+              </li>
+            </ul>
+          </div>
+
+          <div class="feature-card bordered">
+            <h3>Perfect For</h3>
+            <ul class="feature-list">
+              <li>
+                <span class="checkmark"></span>
+                <span>home appliances</span>
+              </li>
+              <li>
+                <span class="checkmark"></span>
+                <span>electronics</span>
+              </li>
+              <li>
+                <span class="checkmark"></span>
+                <span>vehicles</span>
+              </li>
+              <li>
+                <span class="checkmark"></span>
+                <span>tools</span>
+              </li>
+              <li>
+                <span class="checkmark"></span>
+                <span>rental items</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="cta-section">
+          <p class="cta-text">If you can own it — Assetifyr can track it.</p>
+          <button class="cta-btn">Start using Assetifyr</button>
+        </div>
+      </section>
+
+      <!-- For Service Providers Section -->
+      <section class="feature-section hidden" data-content="service-providers">
+        <h2 class="section-title"><span class="highlight">For Service Providers</span> – More Jobs, Less Guesswork</h2>
+        <p class="section-description">Assetifyr connects you directly with customers who need your expertise. You work faster, smarter, and with better information.</p>
+
+        <div class="features-grid">
+          <div class="feature-card">
+            <h3>Why Service Providers Use Assetifyr</h3>
+            <ul class="feature-list">
+              <li>
+                <span class="checkmark"></span>
+                <span>Direct access to customers</span>
+              </li>
+              <li>
+                <span class="checkmark"></span>
+                <span>Full device history before you arrive</span>
+              </li>
+              <li>
+                <span class="checkmark"></span>
+                <span>Less diagnostics time</span>
+              </li>
+              <li>
+                <span class="checkmark"></span>
+                <span>More successful repairs</span>
+              </li>
+              <li>
+                <span class="checkmark"></span>
+                <span>Repeat customers through trust</span>
+              </li>
+            </ul>
+          </div>
+
+          <div class="feature-card bordered">
+            <h3>How It Helps Your Business</h3>
+            <ul class="feature-list">
+              <li>
+                <span class="checkmark"></span>
+                <span>better planning</span>
+              </li>
+              <li>
+                <span class="checkmark"></span>
+                <span>fewer mistakes</span>
+              </li>
+              <li>
+                <span class="checkmark"></span>
+                <span>higher customer satisfaction</span>
+              </li>
+              <li>
+                <span class="checkmark"></span>
+                <span>steady service demand</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="cta-section">
+          <p class="cta-text">Join as a service provider</p>
+          <button class="cta-btn">Start using Assetifyr</button>
+        </div>
+      </section>
+
+      <!-- For Manufacturers Section -->
+      <section class="feature-section hidden" data-content="manufacturers">
+        <h2 class="section-title"><span class="highlight">For Manufacturers</span> – Ready for Digital Product Passport 2027+</h2>
+        <p class="section-description">Assetifyr helps manufacturers comply with EU regulations while unlocking new value.</p>
+
+        <div class="features-grid">
+          <div class="feature-card">
+            <h3>Key Benefits</h3>
+            <ul class="feature-list">
+              <li>
+                <span class="checkmark"></span>
+                <span>EU Digital Product Passport compliance</span>
+              </li>
+              <li>
+                <span class="checkmark"></span>
+                <span>Real-world usage data</span>
+              </li>
+              <li>
+                <span class="checkmark"></span>
+                <span>Fewer warranty claims</span>
+              </li>
+              <li>
+                <span class="checkmark"></span>
+                <span>Improved product quality</span>
+              </li>
+              <li>
+                <span class="checkmark"></span>
+                <span>New service-based revenue</span>
+              </li>
+            </ul>
+          </div>
+
+          <div class="feature-card bordered">
+            <h3>What You Gain</h3>
+            <ul class="feature-list">
+              <li>
+                <span class="checkmark"></span>
+                <span>lifecycle visibility</span>
+              </li>
+              <li>
+                <span class="checkmark"></span>
+                <span>direct product feedback</span>
+              </li>
+              <li>
+                <span class="checkmark"></span>
+                <span>standardized digital identity (ATIN)</span>
+              </li>
+            </ul>
+            <p style="margin-top: 20px; font-size: 14px; color: #666; line-height: 1.6">No need to build your own system.</p>
+          </div>
+        </div>
+
+        <div class="cta-section">
+          <p class="cta-text">Integrate with Assetifyr</p>
+          <button class="cta-btn">Start using Assetifyr</button>
+        </div>
+      </section>
+
+      <!-- For Retailers Section -->
+      <section class="feature-section hidden" data-content="retailers">
+        <h2 class="section-title"><span class="highlight">For Retailers</span> – Sell with Confidence</h2>
+        <p class="section-description">Assetifyr makes selling and transferring products simple and transparent.</p>
+
+        <div class="features-grid">
+          <div class="feature-card">
+            <h3>Retailer Benefits</h3>
+            <ul class="feature-list">
+              <li>
+                <span class="checkmark"></span>
+                <span>Instant ownership transfer</span>
+              </li>
+              <li>
+                <span class="checkmark"></span>
+                <span>Digital warranties</span>
+              </li>
+              <li>
+                <span class="checkmark"></span>
+                <span>Automatic product registration</span>
+              </li>
+              <li>
+                <span class="checkmark"></span>
+                <span>Higher buyer trust</span>
+              </li>
+              <li>
+                <span class="checkmark"></span>
+                <span>Less paperwork</span>
+              </li>
+            </ul>
+          </div>
+
+          <div class="feature-card bordered">
+            <h3>Why It Matters</h3>
+            <p style="margin-bottom: 16px; font-size: 14px; color: #4a4a4a; line-height: 1.6">Customers trust products with verified digital history.</p>
+            <p style="font-size: 14px; color: #4a4a4a; line-height: 1.6">Trust increases conversion and reduces disputes.</p>
+          </div>
+        </div>
+
+        <div class="cta-section">
+          <p class="cta-text">Partner with Assetifyr</p>
+          <button class="cta-btn">Start using Assetifyr</button>
+        </div>
+      </section>
+    </div>
+
+    <script>
+      // Tab switching functionality
+      const tabs = document.querySelectorAll(".tab");
+      const sections = document.querySelectorAll(".feature-section");
+
+      tabs.forEach((tab) => {
+        tab.addEventListener("click", () => {
+          const targetTab = tab.getAttribute("data-tab");
+
+          // Remove active class from all tabs
+          tabs.forEach((t) => t.classList.remove("active"));
+
+          // Add active class to clicked tab
+          tab.classList.add("active");
+
+          // Hide all sections
+          sections.forEach((section) => {
+            section.classList.add("hidden");
+          });
+
+          // Show the target section
+          const targetSection = document.querySelector(`[data-content="${targetTab}"]`);
+          if (targetSection) {
+            targetSection.classList.remove("hidden");
+          }
+        });
+      });
+    </script>
+  </body>
+</html>
